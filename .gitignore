@@ -1,7 +1,11 @@
 # Ignore all Nextflow work directory contents
 work/*
+!work/.gitkeep
 .nextflow.log*
 .nextflow/
 results/*
+!results/.gitkeep
 inputs/*
+!inputs/.gitkeep
 databases/*
+!databases/.gitkeep
