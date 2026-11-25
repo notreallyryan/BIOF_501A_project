@@ -1,7 +1,7 @@
 # Ignore all Nextflow work directory contents
-work/
+work/*
 .nextflow.log*
 .nextflow/
-results/
-inputs/
+results/*
+inputs/*
 databases/*
