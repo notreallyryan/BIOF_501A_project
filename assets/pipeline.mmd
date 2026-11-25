@@ -3,18 +3,24 @@
 %%metro line: results | Results | #E64A19
 %%metro track_gap: 2
 
-%%metro grid: inputs      | 0,1
-%%metro grid: read_qc     | 1,1
-%%metro grid: assembly    | 2,1
-%%metro grid: assembly_qc | 3,1
-%%metro grid: amr         | 3,2
-%%metro grid: phylogeny   | 3,3
-%%metro grid: report      | 4,0
-%%metro grid: plotting    | 4,3
+%%metro grid: input_fastq      | 0,1
+%%metro grid: read_qc          | 1,1
+%%metro grid: assembly         | 2,1
+%%metro grid: input_reference  | 1,3
+%%metro grid: assembly_qc      | 3,0
+%%metro grid: amr              | 3,1
+%%metro grid: phylogeny        | 3,2
+%%metro grid: report           | 4,0
+%%metro grid: plotting         | 4,2
 
 graph LR
-    subgraph inputs [Inputs]
-        samplesheet[Samplesheet]
+    subgraph input_fastq [Input Sequences]
+        samplesheet[Samplesheet.csv]
+    end
+
+    subgraph input_reference [Input Reference]
+        reference[vcho_ref_all.fasta]
+        gff[vcho_ref_all.gff]
     end
 
     subgraph read_qc [Read QC]
@@ -39,7 +45,7 @@ graph LR
     end
 
     subgraph plotting [Plotting]
-        r_plot[ggtree]
+        r_plot[ggtree/ggplot2]
     end
 
     subgraph report [MultiQC report]
@@ -52,6 +58,9 @@ graph LR
     skesa -->|qc| quast
     busco -->|qc| multiqc
     quast -->|qc| multiqc
+    reference -->|qc| quast
+    gff -->|qc| quast
+    reference -->|results| parsnp
     skesa -->|results| rgi_main
     skesa -->|results| parsnp
     parsnp -->|results| r_plot
