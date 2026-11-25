@@ -1,0 +1,8 @@
+accession,fastq1,fastq2,sample,country,date_of_collection,subtype
+SRR227312,SRR227312_1.fastq.gz,SRR227312_2.fastq.gz,cp1032,Mexico,1991,O1 OGET
+SRR227311,SRR227311_1.fastq.gz,SRR227311_2.fastq.gz,cp1038,Zimbabwe,2009,O1 OGET
+SRR227309,SRR227309_1.fastq.gz,SRR227309_2.fastq.gz,cp1041,Zambia,2004,O1 OGET
+SRR227324,SRR227324_1.fastq.gz,SRR227324_2.fastq.gz,cp1042,Thailand,2010,O1 OGET
+SRR227303,SRR227303_1.fastq.gz,SRR227303_2.fastq.gz,cp1048,Bangladesh,2010,O1 OGET
+SRR190870,SRR190870_1.fastq.gz,SRR190870_2.fastq.gz,hc-23a1,Haiti,2010,O1 OGET
+SRR308726,SRR308726_1.fastq.gz,SRR308726_2.fastq.gz,vc-1,Nepal,2010,O1 OGET

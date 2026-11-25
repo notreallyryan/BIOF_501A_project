@@ -1,0 +1,58 @@
+%%metro title: V. cholerae pipeline
+%%metro line: qc | Quality control | #2196F3
+%%metro line: results | Results | #E64A19
+%%metro track_gap: 2
+
+%%metro grid: inputs      | 0,1
+%%metro grid: read_qc     | 1,1
+%%metro grid: assembly    | 2,1
+%%metro grid: assembly_qc | 3,1
+%%metro grid: amr         | 3,2
+%%metro grid: phylogeny   | 3,3
+%%metro grid: report      | 4,0
+%%metro grid: plotting    | 4,3
+
+graph LR
+    subgraph inputs [Inputs]
+        samplesheet[Samplesheet]
+    end
+
+    subgraph read_qc [Read QC]
+        fastp[fastp]
+    end
+
+    subgraph assembly [Assembly]
+        skesa[skesa]
+    end
+
+    subgraph assembly_qc [Assembly QC]
+        busco[busco]
+        quast[quast]
+    end
+
+    subgraph amr [Antimicrobial resistance]
+        rgi_main[CARD rgi]
+    end
+
+    subgraph phylogeny [Phylogeny]
+        parsnp[parsnp]
+    end
+
+    subgraph plotting [Plotting]
+        r_plot[ggtree]
+    end
+
+    subgraph report [MultiQC report]
+        multiqc[multiqc]
+    end
+
+    samplesheet -->|qc,results| fastp
+    fastp -->|qc,results| skesa
+    skesa -->|qc| busco
+    skesa -->|qc| quast
+    busco -->|qc| multiqc
+    quast -->|qc| multiqc
+    skesa -->|results| rgi_main
+    skesa -->|results| parsnp
+    parsnp -->|results| r_plot
+    rgi_main -->|results| r_plot

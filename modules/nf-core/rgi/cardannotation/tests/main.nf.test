@@ -1,0 +1,53 @@
+nextflow_process {
+
+    name "Test Process RGI_CARDANNOTATION"
+    script "../main.nf"
+    process "RGI_CARDANNOTATION"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "rgi"
+    tag "rgi/cardannotation"
+
+    test("rgi/cardannotation") {
+        def card
+        setup {
+            card = extract('https://card.mcmaster.ca/latest/data', compression: 'tar.bz2')
+        }
+
+        when {
+            process {
+                """
+                input[0] = file('${card}')
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(sanitizeOutput(process.out)).match() }
+            )
+        }
+    }
+
+    test("rgi/cardannotation - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = []
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(sanitizeOutput(process.out)).match() }
+            )
+        }
+    }
+}

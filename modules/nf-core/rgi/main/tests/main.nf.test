@@ -1,0 +1,69 @@
+nextflow_process {
+
+    name "Test Process RGI_MAIN"
+    script "../main.nf"
+    process "RGI_MAIN"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "rgi"
+    tag "rgi/main"
+    tag "rgi/cardannotation"
+
+    test("rgi/main - haemophilus_influenzae - genome_fna_gz") {
+        def card
+        setup {
+            card = extract('https://card.mcmaster.ca/latest/data', compression: 'tar.bz2')
+            run("RGI_CARDANNOTATION") {
+                script "modules/nf-core/rgi/cardannotation"
+                process {
+                    """
+                    input[0] = file('${card}')
+                    """
+                }
+            }
+        }
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true)
+                ]
+                input[1] = RGI_CARDANNOTATION.out.db
+                input[2] = []
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys: ["tmp"])).match() }
+            )
+        }
+    }
+
+    test("rgi/main - haemophilus_influenzae - genome_fna_gz - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [ [ id:'test', single_end:false ], [] ]
+                input[1] = []
+                input[2] = []
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(sanitizeOutput(process.out)).match() }
+            )
+        }
+    }
+}
