@@ -133,8 +133,10 @@ That's all! The pipeline will download the necessary container, samples, and dat
 
 (If using default samplesheet.csv)
  
+### Phylogenetic Tree with country and sampling date metadata:
 ![Phylogenetic Tree](assets/plot_tree.png)
 
+### AMR presence/absence heatmap
 ![AMR Heatmap](assets/plot_AMR.png)
  
 ## Directory Structure Overview
@@ -162,5 +164,5 @@ BIOF_501A_project/
 ## Gen AI Use Statement
  
 - All analysis, ideas, and tool choices were made by Ryan Choi.
-- Code was also originally written by Ryan Choi, but tidied up with Claude afterwards, as Ryan is organizationally-challenged.
- 
+- Code was also originally written by Ryan Choi, but tidied up with Claude afterwards.
+- Claude was used to find the optimal grid layout for the nf-metro graphic, as manual attempts by Ryan were messy.
