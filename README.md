@@ -121,6 +121,8 @@ curl -s https://get.nextflow.io | bash
 
 ## Instructions
 
+First, ensure that docker desktop is open. (Unless you are using linux)
+
 In the project directory, run:
  
 ```bash
