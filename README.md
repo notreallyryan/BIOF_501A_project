@@ -27,6 +27,8 @@ In January 2010, Haiti was hit by a devastating earthquake and received internat
 
 The investigation by Hendriksen et al. was limited by the technology of its time. The authors aligned sample reads to a known *V. cholerae* reference genome and constructed a maximum parsimony tree. We now know that significant differences between bacterial samples exist in the accessory genome, and these can only be captured through *de novo* assembly, not reference alignment. In addition, increased computational resources have made higher-resolution phylogenetic methods such as maximum likelihood practical, and these have largely replaced maximum parsimony.
 
+**There is a need for a pipeline that constructs full de novo assemblies of outbreak samples rather than relying solely on reference alignment, and that uses maximum likelihood inference to produce a more accurate phylogeny. Although the phylogeny itself will still be built from the core genome, assembling each sample in full preserves accessory genome content for future analysis that reference-based approaches discard, and maximum likelihood provides a more accurate tree than parsimony.**
+
 **If we redo the 2010 analysis using modern bioinformatic tools and include more countries, can we still expect the Nepalese samples to be closely related to the Haitian ones?**
  
 ## Design Rationale and Summary
